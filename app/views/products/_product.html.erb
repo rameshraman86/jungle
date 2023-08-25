@@ -7,12 +7,7 @@
     </h1>
   <% end%>
 
-
-<%# When a product has 0 quantity, display a sold out badge on the product list page. %>
-
-
   <div>  
-
     <% if product.quantity==0 %>
       <%= button_to add_item_cart_path(product_id: product.id), class: 'soldout' ,
       method: :post do %>
