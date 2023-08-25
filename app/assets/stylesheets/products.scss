@@ -53,6 +53,15 @@ main section.categories-show {
           background: white;
           color: rgba(0, 130, 29, 0.7);
         }
+        .disabled{
+          opacity: 0.1;
+          pointer-events: none; 
+          background-color: #f2f2f2;
+        }
+        .soldout {
+          background: red;
+          color: white;
+        }
       }
       img {
         width: 100%;
