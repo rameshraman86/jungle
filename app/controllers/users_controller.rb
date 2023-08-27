@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
   
     if @user.save
-      redirect_to root_path, notice: "Thanks for registering!"
+      redirect_to root_path, alert: "Thanks for registering!"
     else
       render :new
     end
