@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   subject(:user) do
     described_class.new(
-      name: 'John Doe',
-      username: 'johndoe@test.com',
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'johndoe@test.com',
       password: 'password',
       password_confirmation: 'password'
     )
@@ -15,13 +16,18 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
 
-    it 'is not valid without a name' do
-      user.name = nil
+    it 'is not valid without a first name' do
+      user.first_name = nil
       expect(user).not_to be_valid
     end
 
-    it 'is not valid without a username' do
-      user.username = nil
+    it 'is not valid without a last name' do
+      user.last_name = nil
+      expect(user).not_to be_valid
+    end
+
+    it 'is not valid without an email' do
+      user.email = nil
       expect(user).not_to be_valid
     end
 
@@ -35,15 +41,27 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid
     end
 
-    it 'is not valid with a duplicate username' do
-      existing_user = User.create(username: 'existinguser')
-      user.username = existing_user.username.upcase # Test case-insensitive uniqueness
+    it 'is not valid with a duplicate email' do
+      existing_user = User.create(
+        first_name: 'John1',
+        last_name: 'Doe1',
+        email: 'johndoe@test.com',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+      user.email = existing_user.email 
       expect(user).not_to be_valid
     end
 
-    it 'requires a unique email as username (case-insensitive)' do
-      existing_user = User.create(username: 'test@test.com')
-      user.username = existing_user.username.upcase
+    it 'requires a unique email (case-insensitive)' do
+      existing_user = User.create(
+        first_name: 'John2',
+        last_name: 'Doe2',
+        email: 'johndoe@test.com',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+      user.email = existing_user.email.upcase
       expect(user).not_to be_valid
     end
 
