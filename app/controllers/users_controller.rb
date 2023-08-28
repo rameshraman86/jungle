@@ -9,14 +9,15 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path
     else
-      redirect_to new_user_path, alert: "Unable to register."
+      flash.now[:alert] = "Unable to register."
+      render :new
     end
   end
   
   private
   
   def user_params
-    params.require(:user).permit(:name, :username, :password)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
 end

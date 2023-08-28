@@ -6,15 +6,42 @@
   </div>
 <% end %>
 
-<%= form_for @user, url: users_path do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, required: true  %>
+<%= form_for @user, url: users_path, id: 'registration-form' do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, required: true %>
 
-  <%= f.label :username %>
-  <%= f.text_field :username, required: true  %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, required: true %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email, required: true %>
 
   <%= f.label :password %>
-  <%= f.password_field :password, required: true %>
+  <%= f.password_field :password, required: true, id: 'user_password' %>
 
-  <%= f.submit 'Register' %>
+ <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, required: true, id: 'user_password_confirmation' %>
+  <span id="password-confirmation-error" class="error"></span>
+
+  <%= f.submit 'Register', id: 'register-button' %>
 <% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var registerButton = document.getElementById('register-button');
+    var registrationForm = document.getElementById('registration-form');
+    var passwordConfirmationError = document.getElementById('password-confirmation-error');
+    
+    registerButton.addEventListener('click', function(event) {
+      var password = document.getElementById('user_password').value;
+      var passwordConfirmation = document.getElementById('user_password_confirmation').value;
+
+      if (password !== passwordConfirmation) {
+        passwordConfirmationError.textContent = 'Password confirmation does not match.';
+        event.preventDefault(); // Prevent form submission
+      }
+    });
+  });
+</script>
+
+

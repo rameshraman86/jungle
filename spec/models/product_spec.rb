@@ -18,7 +18,7 @@ RSpec.describe Product, type: :model do
       @category = Category.new(name: 'test')
       @product = Product.new(name: 'test', quantity: 10, category: @category)
       expect(@product).to_not be_valid
-      puts @product.errors.full_messages
+      # puts @product.errors.full_messages
     end
 
     it 'should not save a product without a quantity' do
