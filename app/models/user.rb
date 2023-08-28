@@ -3,6 +3,6 @@ class User < ApplicationRecord
  
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true
-  validates :password, presence: true
+  validates :password, presence: true, length: { minimum: 8 }  # Minimum password length of 8 characters
 
 end
