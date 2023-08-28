@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+
   subject(:user) do
     described_class.new(
       first_name: 'John',
@@ -11,6 +12,7 @@ RSpec.describe User, type: :model do
     )
   end
 
+  
   describe 'validations' do
     it 'is valid with valid attributes' do
       expect(user).to be_valid
@@ -76,4 +78,44 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
   end
+
+
+
+  describe '.authenticate_with_credentials' do
+    before(:each) do
+      @user = User.create(
+        first_name: 'John',
+        last_name: 'Doe',
+        email: 'john@example.com',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+    end
+
+    it 'authenticates with correct email and password' do
+      authenticated_user = User.authenticate_with_credentials('john@example.com', 'password')
+      expect(authenticated_user).to eq(@user)
+    end
+
+    it 'does not authenticate with incorrect password' do
+      authenticated_user = User.authenticate_with_credentials('john@example.com', 'wrongpassword')
+      expect(authenticated_user).to be_nil
+    end
+
+    it 'does not authenticate with non-existent email' do
+      authenticated_user = User.authenticate_with_credentials('nonexistent@example.com', 'password')
+      expect(authenticated_user).to be_nil
+    end
+
+    it 'authenticates with email having leading/trailing spaces' do
+      authenticated_user = User.authenticate_with_credentials('  john@example.com  ', 'password')
+      expect(authenticated_user).to eq(@user)
+    end
+
+    it 'authenticates with email in different case' do
+      authenticated_user = User.authenticate_with_credentials('John@Example.com', 'password')
+      expect(authenticated_user).to eq(@user)
+    end
+  end
 end
+
