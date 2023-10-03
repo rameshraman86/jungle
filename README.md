@@ -1,6 +1,14 @@
 # Jungle
 
-A mini e-commerce application built with Rails 6.1.
+An e-commerce fullstack web application built with Rails 6.1. Application features storefront and end user flow. 
+
+#### Users
+- Secure registration and login, browse items, add items to cart and manage shopping cart
+- Make payment securely through stripe API
+#### Storefront
+- Inventory management from admin dashboard
+- Category and product listing management from category admin page
+
 
 ## Setup
 
@@ -32,3 +40,19 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 #### Testing
 - Cypress
 - RSpec
+
+## Screenshots
+#### Homepage
+!["Homepage"](./docs/homepage.png)
+#### Product Listing
+!["listing"](./docs/product-listing.png)
+#### Admin Page
+!["listing"](./docs/admin-page.png)
+!["listing"](./docs/admin-2.png)
+#### Payment with Stripe
+!["listing"](./docs/payment-stripe.png)
+#### Shopping Cart
+!["listing"](./docs/shopping-cart.png)
+#### Registration and Login
+!["listing"](./docs/registration.png)
+!["listing"](./docs/login.png)
