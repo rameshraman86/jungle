@@ -53,6 +53,5 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 !["listing"](./docs/payment-stripe.png)
 #### Shopping Cart
 !["listing"](./docs/shopping-cart.png)
-#### Registration and Login
+#### Registration
 !["listing"](./docs/registration.png)
-!["listing"](./docs/login.png)
