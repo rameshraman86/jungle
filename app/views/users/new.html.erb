@@ -19,16 +19,20 @@
   <%= f.label :password %>
   <%= f.password_field :password, required: true, id: 'user_password' %>
 
- <%= f.label :password_confirmation %>
+  <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, required: true, id: 'user_password_confirmation' %>
   <span id="password-confirmation-error" class="error"></span>
 
-  <%= f.submit 'Register', id: 'register-button' %>
+  <div class="buttons">
+    <%= f.submit 'Register', id: 'register-button' %>
+    <button type="button" id="cancel-button">Cancel</button>
+  </div>
 <% end %>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var registerButton = document.getElementById('register-button');
+    var cancelButton = document.getElementById('cancel-button');
     var registrationForm = document.getElementById('registration-form');
     var passwordConfirmationError = document.getElementById('password-confirmation-error');
     
@@ -41,7 +45,9 @@
         event.preventDefault(); // Prevent form submission
       }
     });
+
+    cancelButton.addEventListener('click', function(event) {
+      registrationForm.reset(); // Reset the form
+    });
   });
 </script>
-
-
